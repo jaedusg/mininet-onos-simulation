@@ -19,11 +19,11 @@ class FatTree( Topo ):
     def __init__( self, k):
         " Create Fat Tree topo."
         self.pod = k
-        self.iCoreLayerSwitch = (k/2)**2
-        self.iAggLayerSwitch = k*k/2
-        self.iEdgeLayerSwitch = k*k/2
-        self.density = k/2
-        self.iHost = self.iEdgeLayerSwitch * self.density
+        self.iCoreLayerSwitch = int((k/2)**2)
+        self.iAggLayerSwitch = int(k*k/2)
+        self.iEdgeLayerSwitch = int(k*k/2)
+        self.density = int(k/2)
+        self.iHost = int(self.iEdgeLayerSwitch * self.density)
 
 
 
@@ -45,7 +45,7 @@ class FatTree( Topo ):
     """
 
     def _addSwitch(self, number, level, switch_list):
-        for x in range(1, int(number)+1):
+        for x in range(1, number+1):
             PREFIX = str(level) + "00"
             if x >= int(10):
                 PREFIX = str(level) + "0"
@@ -61,7 +61,7 @@ class FatTree( Topo ):
         self._addSwitch(NUMBER, 3, self.EdgeSwitchList)
 
     def createHost(self, NUMBER):
-        for x in range(1, int(NUMBER)+1):
+        for x in range(1, NUMBER+1):
             PREFIX = "h"
             self.HostList.append(self.addHost(PREFIX + str(x)))
 
