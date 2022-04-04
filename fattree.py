@@ -106,9 +106,10 @@ def setHostIp(net, topo):
         hosts.append(net.get(topo.HostList[k]))
 
     h = 0
-    end = topo.pod/2
+    end = int(topo.pod/2)
+    numPod = int(topo.pod)
     print (end)
-    for pod in range(1, topo.pod + 1):
+    for pod in range(1, numPod + 1):
         for edgeSwitchNummber in range(1, end+1):
             for hostNbInSwitch in range(1, end+1):
                 print("pod = " + str(pod) + " / edgeSwitchNummber = " + str(edgeSwitchNummber) + " / hostNbInSwitch = " + str(hostNbInSwitch))
