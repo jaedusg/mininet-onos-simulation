@@ -71,8 +71,10 @@ class FatTree( Topo ):
     def createLink(self, bandwidth):
         # bandwidth in Mbit
         linkopts = dict(bw=bandwidth) 
-        end = self.pod/2
-        for x in range(0, self.iAggLayerSwitch, end):
+        end = int(self.pod/2)
+        numAggLayerSwitch = int(self.iAggLayerSwitch)
+        numEdgeLayerSwitch = int(self.iEdgeLayerSwitch)
+        for x in range(0, numAggLayerSwitch, end):
             for i in range(0, end):
                 for j in range(0, end):
                     self.addLink(
@@ -80,7 +82,7 @@ class FatTree( Topo ):
                         self.AggSwitchList[x+i],
                         **linkopts)
 
-        for x in range(0, self.iAggLayerSwitch, end):
+        for x in range(0, self.numAggLayerSwitch, end):
             for i in range(0, end):
                 for j in range(0, end):
                     self.addLink(
@@ -88,7 +90,7 @@ class FatTree( Topo ):
                         self.EdgeSwitchList[x+j],
                         **linkopts)
 
-        for x in range(0, self.iEdgeLayerSwitch):
+        for x in range(0, self.numEdgeLayerSwitch):
             for i in range(0, self.density):
                 self.addLink(
                     self.EdgeSwitchList[x],
