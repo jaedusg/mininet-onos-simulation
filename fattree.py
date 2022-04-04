@@ -31,7 +31,12 @@ class FatTree( Topo ):
         # Initialize Topology
         Topo.__init__(self)
         # Create Switches Core, Aggregation, Edges
-        self.createVNetwork()
+        print("\n Begin Creating Virtual Network \n")
+        self.createSwitch(self.iCoreLayerSwitch, "cs_", self.CoreSwitches)
+        self.createSwitch(self.iAggLayerSwitch, "as_", self.AggSwitches)
+        self.createSwitch(self.iEdgeLayerSwitch, "es_", self.EdgeSwitches)
+        self.createHost(self.iHost)
+        print("\n End Creating Virtual Network \n")
         # Create Network Links with bandwidth 1000 MB
         self.createNetworkLink(1000)
 
@@ -60,18 +65,6 @@ class FatTree( Topo ):
             print('Creating Host: ' + prefix + str(h))
             
         print("\n End Creating Hosts \n")    
-
-    """
-    Create Virtual Network
-    """
-
-    def createVNetwork(self):
-        print("\n Begin Creating Virtual Network \n")
-        self.createSwitch(self.iCoreLayerSwitch, "cs_", self.CoreSwitches)
-        self.createSwitch(self.iAggLayerSwitch, "as_", self.AggSwitches)
-        self.createSwitch(self.iEdgeLayerSwitch, "es_", self.EdgeSwitches)
-        self.createHost(self.iHost)
-        print("\n End Creating Virtual Network \n")
     
 
     """
