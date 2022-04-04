@@ -45,7 +45,7 @@ class FatTree( Topo ):
     """
 
     def _addSwitch(self, number, level, switch_list):
-        for x in xrange(1, number+1):
+        for x in range(1, number+1):
             PREFIX = str(level) + "00"
             if x >= int(10):
                 PREFIX = str(level) + "0"
@@ -61,7 +61,7 @@ class FatTree( Topo ):
         self._addSwitch(NUMBER, 3, self.EdgeSwitchList)
 
     def createHost(self, NUMBER):
-        for x in xrange(1, NUMBER+1):
+        for x in range(1, NUMBER+1):
             PREFIX = "h"
             self.HostList.append(self.addHost(PREFIX + str(x)))
 
@@ -72,24 +72,24 @@ class FatTree( Topo ):
         # bandwidth in Mbit
         linkopts = dict(bw=bandwidth) 
         end = self.pod/2
-        for x in xrange(0, self.iAggLayerSwitch, end):
-            for i in xrange(0, end):
-                for j in xrange(0, end):
+        for x in range(0, self.iAggLayerSwitch, end):
+            for i in range(0, end):
+                for j in range(0, end):
                     self.addLink(
                         self.CoreSwitchList[i*end+j],
                         self.AggSwitchList[x+i],
                         **linkopts)
 
-        for x in xrange(0, self.iAggLayerSwitch, end):
-            for i in xrange(0, end):
-                for j in xrange(0, end):
+        for x in range(0, self.iAggLayerSwitch, end):
+            for i in range(0, end):
+                for j in range(0, end):
                     self.addLink(
                         self.AggSwitchList[x+i],
                         self.EdgeSwitchList[x+j],
                         **linkopts)
 
-        for x in xrange(0, self.iEdgeLayerSwitch):
-            for i in xrange(0, self.density):
+        for x in range(0, self.iEdgeLayerSwitch):
+            for i in range(0, self.density):
                 self.addLink(
                     self.EdgeSwitchList[x],
                     self.HostList[self.density * x + i],
@@ -100,7 +100,7 @@ Set IP
 """
 def setHostIp(net, topo):
     hosts = []
-    for k in xrange(len(topo.HostList)):
+    for k in range(len(topo.HostList)):
         hosts.append(net.get(topo.HostList[k]))
 
     h = 0
