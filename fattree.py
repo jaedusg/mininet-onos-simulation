@@ -45,7 +45,7 @@ class FatTree( Topo ):
     """
 
     def _addSwitch(self, number, level, switch_list):
-        for x in range(1, number+1):
+        for x in range(1, int(number)+1):
             PREFIX = str(level) + "00"
             if x >= int(10):
                 PREFIX = str(level) + "0"
@@ -61,7 +61,7 @@ class FatTree( Topo ):
         self._addSwitch(NUMBER, 3, self.EdgeSwitchList)
 
     def createHost(self, NUMBER):
-        for x in range(1, NUMBER+1):
+        for x in range(1, int(NUMBER)+1):
             PREFIX = "h"
             self.HostList.append(self.addHost(PREFIX + str(x)))
 
